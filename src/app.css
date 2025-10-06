@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+
+@font-face {
+    font-family: FOT-Seurat Pro B;
+    src: url("/fonts/FOT-Seurat Pro B.otf");
+}
+
+@theme {  
+    --font-seurat: "FOT-Seurat Pro B", sans-serif;
+ }
