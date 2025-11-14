@@ -44,12 +44,17 @@
   const appWindow = getCurrentWindow();
 </script>
 
-<main class="container font-seurat bg-orange-100 text-stone-900 w-full h-full">
-  <nav
+<main class="container font-seurat bg-orange-100 text-stone-900 w-full h-screen">
+  <div class="absolute w-full">
+    <nav
     class="bg-orange-200 w-full p-1 px-2 flex flex-row wavy-bottom pb-6 cursor justify-between align-middle"
     data-tauri-drag-region
   >
+  <div class="flex flex-row items-center space-x-2">
+    <img src="/icons/leaf.png" class="size-8 inline" alt="" />
     <p class="text-2xl cursor-default" data-tauri-drag-region>tanuki</p>
+  </div>
+    
     <div>
       <button
         class="hover:scale-125 transition"
@@ -69,6 +74,8 @@
       </button>
     </div>
   </nav>
+  </div>
+  
 
   {@render children()}
 </main>

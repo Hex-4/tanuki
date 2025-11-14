@@ -9,3 +9,31 @@
 @theme {  
     --font-seurat: "FOT-Seurat Pro B", sans-serif;
  }
+
+ .hourly-slider {
+  -webkit-appearance: none;
+  height: 15px;
+  border-radius: 10px;  
+  background: var(--color-orange-200);
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.hourly-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: var(--color-orange-300);
+  cursor: pointer;
+}
+
+.hourly-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
