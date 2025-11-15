@@ -1,7 +1,3 @@
-# Tauri + SvelteKit + TypeScript
+# tanuki
 
-This template should help get you started developing with Tauri, SvelteKit and TypeScript in Vite.
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+hi! this is a little Tauri rewrite of [Nook](https://github.com/mn6/nook-desktop/tree/main), a small desktop app that plays the hourly music from Animal Crossing on your computer. The original is currently unmaintained and a little buggy on my Wayland system, so I took matters into my own hands :)
