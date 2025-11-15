@@ -1,11 +1,3 @@
-<style>
-  @font-face {
-    font-family: FOT-Seurat Pro B;
-    src: url("/fonts/FOT-Seurat Pro B.otf");
-  }
-</style>
-
-
 <script lang="ts">
   import { load, Store } from "@tauri-apps/plugin-store";
   let hourlyAudio: HTMLAudioElement = $state();
@@ -28,7 +20,6 @@
     "new-horizons-rainy",
     "new-horizons-snowy",
     // removed Pocket Camp as it has morning/afternoon/evening/night tracks which im too lazy to implement
-    
   ];
 
   const kkSongs = [
@@ -242,26 +233,27 @@
     "New Horizons",
     "New Horizons (Rainy)",
     "New Horizons (Snowy)",
-    
   ];
 
   import { onMount } from "svelte";
 
   let musicURL = $derived.by(() => {
-    if (selectedGame === 1) { // K.K Slider
-      return `https://d17orwheorv96d.cloudfront.net/kk-slider-desktop/${kkSongs[currentHour]}.ogg`;
-    } else if (selectedGame === 0) { // Random
-      const randomGameIndex = Math.floor(Math.random() * (games.length - 1)) + 1;
+    if (selectedGame === 1) {
+      // K.K Slider
+      return `https://d17orwheorv96d.cloudfront.net/kk-slider-desktop/${kkSongs[currentKKSong]}.ogg`;
+    } else if (selectedGame === 0) {
+      // Random
+      const randomGameIndex =
+        Math.floor(Math.random() * (games.length - 1)) + 1;
       return `https://d17orwheorv96d.cloudfront.net/${games[randomGameIndex]}/${hours[currentHour]}.ogg`;
     } else {
       return `https://d17orwheorv96d.cloudfront.net/${games[selectedGame]}/${hours[currentHour]}.ogg`;
     }
-    
   });
 
   let store: Store;
 
-  let selectedGame = $state(6); // New Leaf
+  let selectedGame = $state(8); // New Leaf
   let currentHour = $state(20); // 8 PM
 
   const hours = [
@@ -319,26 +311,23 @@
 
   let isHourlyPlaying = $derived(true);
   let isRainPlaying = $derived(true);
-  let currentKKSong = $derived(0);
+  let currentKKSong = $state(0);
 
   function updateHour() {
     const date = new Date();
     currentHour = date.getHours();
-
-    if (selectedGame === 1) {
-      currentHour = currentKKSong
-      currentKKSong++
-      if (currentKKSong >= kkSongs.length) {
-        currentKKSong = 0; 
-      }
-    }
   }
 
   onMount(async () => {
-    store = await load("storeewew.json", { autoSave: 100 });
+    store = await load("tanuki-hex4-store.json", { autoSave: 100 });
     const val = await store.get<{ value: number }>("selectedGame");
     if (val && val.value !== undefined) {
       selectedGame = val.value;
+    }
+    const kkVal = await store.get<{ value: number }>("currentKKSong");
+    if (kkVal && kkVal.value !== undefined) {
+      currentKKSong = kkVal.value;
+      console.log("Loaded KK song index:", currentKKSong);
     }
     updateHour();
     hourlyAudio.load();
@@ -348,15 +337,23 @@
     time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
   );
 
+  // save to store
   $effect(async () => {
-
-    updateHour()
-
-    console.log("selected game changed:", selectedGame);
+    selectedGame;
     if (store && selectedGame !== undefined) {
-      console.log("saving selected game:", selectedGame);
       await store.set("selectedGame", { value: selectedGame });
+      await store.save();
+      console.log("Saved selected game:", selectedGame);
     }
+  });
+
+  $effect(async () => {
+    currentKKSong;
+    if (store && currentKKSong !== undefined) {
+      await store.set("currentKKSong", { value: currentKKSong });
+      await store.save();
+    }
+
   });
 
   setInterval(() => {
@@ -366,6 +363,12 @@
   function hourlyEnded() {
     hourlyAudio.currentTime = 0;
     hourlyAudio.play();
+    if (selectedGame === 1) {
+      currentKKSong++;
+      if (currentKKSong >= kkSongs.length) {
+        currentKKSong = 0;
+      }
+    }
     updateHour();
   }
 
@@ -373,6 +376,15 @@
     rainAudio.currentTime = 0;
     rainAudio.play();
   }
+
+  $inspect({
+    selectedGame,
+    currentHour,
+    musicURL,
+    isHourlyPlaying,
+    isRainPlaying,
+    currentKKSong,
+  });
 </script>
 
 <div class="w-full h-full flex flex-col items-center justify-center">
@@ -392,7 +404,8 @@
   <p class="italic">{isHourlyPlaying ? "now playing:" : "current track:"}</p>
 
   <p class="text-2xl my-2 mx-4 justify-center text-center">
-    {humanHours[currentHour]} <span class="text-stone-500">·</span>
+    {selectedGame == 1 ? kkSongs[currentKKSong] : humanHours[currentHour]}
+    <span class="text-stone-500">·</span>
     {humanGames[selectedGame]}
   </p>
 
@@ -488,5 +501,22 @@
       <img src="/icons/down-caret.svg" class="size-8" alt="Dropdown arrow" />
     </div>
   </div>
+  {#if selectedGame == 1}
+    <button
+      class="mt-4 p-2 px-3 bg-orange-200 rounded-lg transition hover:bg-orange-300"
+      onclick={() => {
+        currentKKSong++;
+        if (currentKKSong >= kkSongs.length) {
+          currentKKSong = 0;
+        }
+      }}>skip this k.k. song</button
+    >
+  {/if}
 </div>
 
+<style>
+  @font-face {
+    font-family: FOT-Seurat Pro B;
+    src: url("/fonts/FOT-Seurat Pro B.otf");
+  }
+</style>
