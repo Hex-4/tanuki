@@ -20,6 +20,14 @@ Features that are *not* implemented:
 - K.K. on Saturday nights
 - Localization
 
+## how to use
+
+tanuki has not been extensively tested! please create an issue if you run into anything ;)
+
+download from the [latest release](https://github.com/Hex-4/tanuki/releases/latest)! we've got a pretty wide range of options for windows, linux, and mac.
+
+this was developed on a wayland linux system so I cannot promise compatibility with other OSes.
+
 ## credits
 
 tanuki is a [Tauri](https://tauri.app/) app, with Bun, Svelte and Tailwind used for the frontend. Many things were borrowed from Nook, such as the CDN (for audio files) and the lists of games.
