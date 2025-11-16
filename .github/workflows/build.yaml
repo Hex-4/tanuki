@@ -35,7 +35,7 @@ jobs:
       if: matrix.platform == 'ubuntu-22.04'
       run: |
         sudo apt-get update
-        sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf \
+        sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev libunwind-dev librsvg2-dev patchelf \
         libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good
     
     - name: Install frontend dependencies
@@ -51,5 +51,5 @@ jobs:
         releaseBody: "hi! it looks like hex4 hasn't gotten around to writing the changelog yet, but you can still download the assets below to install tanuki ^-^"
         releaseDraft: false
         prerelease: false
-        tauriScript: "bun run"
+        tauriScript: "bun run tauri"
         args: ${{ matrix.args }}
