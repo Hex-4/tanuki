@@ -44,7 +44,7 @@
   const appWindow = getCurrentWindow();
 </script>
 
-<main class="container font-seurat bg-orange-100 text-stone-900 w-full h-screen">
+<main class="container font-seurat bg-orange-100 text-stone-900 min-w-full h-screen">
   <div class="absolute w-full">
     <nav
     class="bg-orange-200 w-full p-1 px-2 flex flex-row wavy-bottom pb-6 cursor justify-between align-middle"
