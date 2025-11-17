@@ -26,6 +26,13 @@ tanuki has not been extensively tested! please create an issue if you run into a
 
 download from the [latest release](https://github.com/Hex-4/tanuki/releases/latest)! we've got a pretty wide range of options for windows, linux, and mac.
 
+on windows and mac you will probably need to dismiss the code-signing warning:
+
+- windows: "Windows protected your PC" -> More info -> Run anyways
+- mac: after moving tanuki to your Applications folder, right click the app -> Open -> Open
+
+this appears due to me not having the funding to purchase a code-signing certificate. if you're skeptical, note that the downloads are [built from source](https://github.com/Hex-4/tanuki/actions) by GHA, then directly uploaded by the workflow.
+
 this was developed on a wayland linux system so I cannot promise compatibility with other OSes.
 
 ## credits
