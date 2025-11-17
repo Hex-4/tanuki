@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-22.04, windows-latest, macos-latest]
+        platform: [ubuntu-latest, windows-latest, macos-latest]
     
     runs-on: ${{ matrix.platform }}
     
@@ -32,7 +32,7 @@ jobs:
       uses: dtolnay/rust-toolchain@stable
     
     - name: Install dependencies (Ubuntu only)
-      if: matrix.platform == 'ubuntu-22.04'
+      if: matrix.platform == 'ubuntu-latest'
       run: |
         sudo apt-get update
         sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev libunwind-dev librsvg2-dev patchelf \
