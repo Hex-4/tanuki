@@ -240,14 +240,14 @@
   let musicURL = $derived.by(() => {
     if (selectedGame === 1) {
       // K.K Slider
-      return `https://d17orwheorv96d.cloudfront.net/kk-slider-desktop/${kkSongs[currentKKSong]}.ogg`;
+      return `https://tanuki-cdn.hex4.xyz/kk-slider-desktop/${kkSongs[currentKKSong]}.ogg`;
     } else if (selectedGame === 0) {
       // Random
       const randomGameIndex =
         Math.floor(Math.random() * (games.length - 1)) + 1;
-      return `https://d17orwheorv96d.cloudfront.net/${games[randomGameIndex]}/${hours[currentHour]}.ogg`;
+      return `https://tanuki-cdn.hex4.xyz/${games[randomGameIndex]}/${hours[currentHour]}.ogg`;
     } else {
-      return `https://d17orwheorv96d.cloudfront.net/${games[selectedGame]}/${hours[currentHour]}.ogg`;
+      return `https://tanuki-cdn.hex4.xyz/${games[selectedGame]}/${hours[currentHour]}.ogg`;
     }
   });
 
@@ -334,7 +334,7 @@
   });
   let time = $state(new Date());
   let timeString = $derived(
-    time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+    time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
   );
 
   // save to store
@@ -353,7 +353,6 @@
       await store.set("currentKKSong", { value: currentKKSong });
       await store.save();
     }
-
   });
 
   setInterval(() => {
