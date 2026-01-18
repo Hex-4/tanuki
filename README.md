@@ -11,7 +11,7 @@ tanuki is far from complete, but it currently includes most of the features that
 - Play/pause rain or music + volume control
 - Minimize to system tray
 
-Features that are *not* implemented:
+Features that are _not_ implemented:
 
 - Town tunes
 - K.K. playlist selection
@@ -37,9 +37,6 @@ this was developed on a wayland linux system so I cannot promise compatibility w
 
 ## credits
 
-tanuki is a [Tauri](https://tauri.app/) app, with Bun, Svelte and Tailwind used for the frontend. Many things were borrowed from Nook, such as the CDN (for audio files) and the lists of games.
+tanuki is a [Tauri](https://tauri.app/) app, with Bun, Svelte and Tailwind used for the frontend. Many things were borrowed from Nook, such as the original audio files (update: now hosted on my own CDN) and the lists of games.
 
 Icons were taken from the [Animal Crossing UI Kit](https://www.figma.com/community/file/1155196388062943961) and [Hack Club Icons](https://icons.hackclub.com/). Thanks!
-
-
-
