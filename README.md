@@ -26,6 +26,8 @@ tanuki has not been extensively tested! please create an issue if you run into a
 
 download from the [latest release](https://github.com/Hex-4/tanuki/releases/latest)! we've got a pretty wide range of options for windows, linux, and mac.
 
+if you use arch (btw), you can get Tanuki from the [AUR](https://aur.archlinux.org/packages/tanuki-bin).
+
 on windows and mac you will probably need to dismiss the code-signing warning:
 
 - windows: "Windows protected your PC" -> More info -> Run anyways
