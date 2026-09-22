@@ -37,6 +37,8 @@ this appears due to me not having the funding to purchase a code-signing certifi
 
 this was developed on a wayland linux system so I cannot promise compatibility with other OSes.
 
+*(pssst... on linux and getting a blank window with no audio? make sure you have gstreamer plugins installed. the package is called `gst-plugins good` on arch, `gstreamer1.0-plugins-good` on deb. look it up!) *
+
 ## credits
 
 tanuki is a [Tauri](https://tauri.app/) app, with Bun, Svelte and Tailwind used for the frontend. Many things were borrowed from Nook, such as the original audio files (update: now hosted on my own CDN) and the lists of games.
